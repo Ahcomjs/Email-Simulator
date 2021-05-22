@@ -28,14 +28,21 @@ function formValidate(event){
         console.log('Testing');
     }else{
         event.target.style.borderBottom = '2px solid red';
-        showError();
+        showError('All fields are required');
+    }
+
+    if(event.target.type === 'email'){
+        const result = event.target.value.indexOf('@');
+        if(result<0){
+         showError('Invalid email');
+        }
     }
    
 }
 
-function showError(){
+function showError(ms){
     const errorMessage = document.createElement('p');
-    errorMessage.textContent = 'All Fields are required';
+    errorMessage.textContent = ms;
     errorMessage.classList.add('border', 'border-red-500', 'background-red-100', 'text-red-500', 'p-3', 'mb-5', 'text-center','error');
 
     const errors = document.querySelectorAll('.error');
