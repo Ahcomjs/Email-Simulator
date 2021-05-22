@@ -25,16 +25,31 @@ function AppInit(){
 function formValidate(event){
 
     if(event.target.value.length > 0){
-        console.log('Testing');
+
+        const error = document.querySelector('p.error');
+        error.remove();
+
+        event.target.classList.remove('border','border-red-500');
+        event.target.classList.add('border','border-green-500');
     }else{
-        event.target.style.borderBottom = '2px solid red';
+        event.target.classList.remove('border','border-green-500');
+        event.target.classList.add('border','border-red-500');
         showError('All fields are required');
     }
 
     if(event.target.type === 'email'){
-        const result = event.target.value.indexOf('@');
-        if(result<0){
-         showError('Invalid email');
+        const reGex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        
+        if(reGex.test(event.target.value)){
+            const error = document.querySelector('p.error');
+            error.remove();
+    
+            event.target.classList.remove('border','border-red-500');
+            event.target.classList.add('border','border-green-500');
+        }else{
+            event.target.classList.remove('border','border-green-500');
+            event.target.classList.add('border','border-red-500');
+            showError('Invalid email');
         }
     }
    

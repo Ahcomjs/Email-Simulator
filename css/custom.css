@@ -15,10 +15,6 @@ body {
     content: '';
 }
 
-.error{
-  border-bottom: 3px solid red;
-}
-
 
 header {
     padding: 10px;
